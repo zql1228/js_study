@@ -61,6 +61,16 @@
                 }
             }
         }
+        // var args=Array.prototype.slice.call(arguments)
+        // var args=[].slice.call(arguments)
+        //es2015
+        const args=Array.from(arguments)
+        function get(a,b,c){
+            console.log(arguments);
+            console.log(Array.from(arguments));
+            return a+b+c
+        }
+        get(1,2,3)
     </script>
 </body>
 </html>
