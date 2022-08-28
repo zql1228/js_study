@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let s1=Symbol('foo')
+        // console.log(s1)//Symbol(foo)
+        // let a={a:1}
+        // let b={b:1}
+        // let c={}
+        // c[a]=3
+        // c[b]=4
+        // console.log(c)////[object Object]: 4
+        // let a={a:1}
+        // let b={b:1}
+        // let s1=Symbol(a)
+        // let s2=Symbol(b)
+        // let c={}
+        // c[s1]=1
+        // c[s2]=2
+        // console.log(c)//Symbol([object Object]): 1
+        //             //Symbol([object Object]): 2
+        // let s=Symbol('My Symbol')
+        // console.log(s+'aaa');//Uncaught TypeError: Cannot convert a Symbol value to a string
+        let sym=Symbol('My Symbol')
+       console.log(sym.toString()); //Symbol(My Symbol)
+       let sym2=Symbol()
+       console.log(Boolean(sym2))//true
+       //Number(sym2)//TypeError: Cannot convert a Symbol value to a number
+     //私有属性
+     let private=Symbol('private')
+     var obj={
+        _name:'张三',
+        [private]:'私有的属性',
+        say:function(){
+            console.log(this[private])
+        }
+     }
+     console.log(Object.keys(obj));//) ['_name', 'say']
+    </script>
+</body>
+</html>

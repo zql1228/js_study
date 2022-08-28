@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //原型链继承
+    //     function Parent(){
+    //         this.name="李钟硕"
+
+    //     }
+    //     Parent.prototype.getName=function(){
+    //         return this.name
+    //     }
+    //     function Child(){
+
+    //     }
+    //     Child.prototype=new Parent()//实例的构造函数就是parent
+    //     console.log(new Child)
+    //     Child.prototype.constructor=Child //这一行的代码和继承没有关系的
+    // const child=new Child()
+    // console.log(child.name)
+    //^构造函数继承
+    // function Parent(name){
+    //     this.name=[name]
+
+    //   }
+    // Parent.prototype.getName=function(){
+    //     return this.name
+    // }
+    // function Child(){
+    //     Parent.call(this,'李易峰')//实现super的功能
+    // }
+    // const child1=new Child()
+    // const child2=new Child()
+    // child1.name[0]='吴磊'
+    // console.log(child1.name)
+    // console.log(child2.name)
+    // child1.getName()//报错
+    function Parent(name){
+        this.name=[name]
+
+      }
+    Parent.prototype.getName=function(){
+        return this.name
+    }
+    function Child(){
+        Parent.call(this,'李易峰')//实现super的功能
+    }
+    // Child.prototype=new Parent()
+    //子类原型和父类原型都指向同一个对象
+    Child.prototype=Parent.prototype
+    Child.prototype.constructor=Child //这一行的代码和继承没有关系的
+    const child1=new Child()
+    const child2=new Child()
+    child1.name[0]='吴磊'
+    console.log(child1.name)
+    console.log(child2.name)
+    console.log(child1.getName())//['吴磊']
+    //对象创建的四种方式的区别
+//前两种属性和方法都在自身上，第三种属性在自身，方法在原型上，第四种属性和方法都在原型上
+    //1.对象字面量
+    var dog1={
+        name:'大黄',
+        age:3,
+        speak:function(){
+            console.log('汪汪');
+        }
+    }
+    //2.new Object()
+    var dog2=new Object()
+    dog2.name='大黄2'
+    dog2.age=1
+    dog2.speak=function(){
+        console.log('wngwang');
+    }
+    //3.构造函数方式
+    function Dog(){
+        this.name='大黄3'
+        this.age=3        
+    }
+    Dog.prototype.speak=function(){
+        console.log('汪汪');
+    }
+    var dog3=new Dog()
+    //4.Object.create
+    var dog4=Object.create(dog1)
+    </script>
+</body>
+</html>

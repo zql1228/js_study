@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const set=new Set([1,2,3,4,5])
+        const  res=set instanceof Set
+        let obj={}
+        let resObj=Object.prototype.toString.call(obj)
+        let resSet=Object.prototype.toString.call(set)
+        console.log(res);//true
+        console.log(resSet);//[object Set]
+        //set 配合扩展运算符实现数组的并集，交集
+
+        //map
+        // const obj1={}
+        // const obj2={}
+
+        // const m=new Map()
+        // const o={p:'hello world'}
+        // m.set(o,'content')//为 Map 对象中的键设置值。
+        // console.log(m.get(o))//获取键值
+        // console.log(m.has(o))//true 键是否存在
+        // console.log(m.delete(o))//true
+        // console.log(m.has(o))//false
+        // let _obj={name:'曹操'}
+        // let m=new Map([
+        //     ['name','曹操'],
+        //     [_obj,'枭雄']
+        // ])
+        // console.log(m.get('name'));//曹操
+        // console.log(m.get({name:'曹操'}));//undefined  地址不同
+        // console.log(m.get(_obj));//枭雄
+        // //Map接受一个数组作为参数的本质
+        // const myMap=new Map()
+        // const items=[['name','曹操']]
+        // item.forEach(([key,vaue])=>myMap.set(key,value))
+
+        var arr=['1','2']
+        var it=makeIterrator(arr)
+       console.log( it.next())
+       console.log( it.next())
+       console.log( it.next())
+        // {
+        //     value:'1',done:false
+        // }
+        function makeIterrator(arr){
+            var nextIndex=0
+            return {
+                next:function(){
+                    return nextIndex<arr.length?{
+                        value:arr[nextIndex++],done:false
+                    }:{
+                        value:undefined,done:true
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

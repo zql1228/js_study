@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <script>
+        const fn=function(){
+            console.log('aaaa');
+        }
+        const obj={name:'juery'}
+        console.log(obj,'////////////');
+        console.log(obj.__proto__===obj.constructor.prototype)
+        //^ 对象的原型是他的__proto__属性的值或者说是他的构造函数的prototype属性的值
+        const obj2=new fn()
+        console.log(obj2,fn.prototype)
+        console.log(obj2.constructor.prototype===fn.prototype)
+        console.log(obj2.constructor.prototype===obj2.__proto__)
+        //obj2的constructor就是fn
+        console.log(fn1,'////')
+        var fn1=111
+        function fn1(){
+            console.log(111)
+        }
+    </script>
+</body>
+</html>
