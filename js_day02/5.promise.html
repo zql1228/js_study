@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const p=new Promise((reslove,reject)=>{
+
+        })
+        // class A{
+       
+        //     constructor(){
+
+        //     }
+        //     sum=()=>{
+        //         console.log(this)
+        //         console.log('xxx');
+        //     }
+        // }
+        // const a=new A()
+        // a.sum()
+            // class A{
+            //     static get(){
+            //         console.log('static get');
+            //     }
+            //     get(){
+            //         console.log('get');
+            //     }
+            // }
+            // A.get()
+            // const a=new A()
+            // a.get()
+            // class F{
+            //     money='100w'
+            //     fn(){}
+            // }
+            // class S extends F{
+            //     constructor(money){
+            //         super(money)
+            //     }
+            // }
+            // console.log(new S(10));
+            //class 继承
+            class F{
+                constructor(sMoney){
+                    this.money=100+sMoney
+                }
+                fn(){
+
+                }
+            }
+            class S extends F{
+                constructor(money){
+                    super(money)
+                }
+            }
+           const s= new S(10)
+           console.log(s);
+        //    console.log(s.prototype.__proto__===F.prototype)//true
+           //
+           const foo=(...arguments)=>{
+            console.log(arguments)
+           }
+           console.log(foo.prototype);//undefined
+           function *fn(){
+            yield 1;
+            yield 2;
+            yield 3;
+           }
+          function f({x,y=1}){
+            return x+y
+           }
+           f(10)
+    </script>
+</body>
+</html>
