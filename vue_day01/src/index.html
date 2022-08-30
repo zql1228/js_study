@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{number}}</div>
+        <div>{{obj.name}}</div>
+    </div>
+    <script>
+       const vm= new Vue({
+            el:'#app',
+            data:{
+                number:100,
+                obj:{}
+            },
+            methods: {
+                
+            }
+        })
+        vm.$set(vm.obj,'name','张三')
+        console.log(vm)
+        Object.defineProperty(vm.obj,'name',{
+            get:function(){
+                console.log('数据获取了');
+            },
+            set:function(newvalue){
+                console.log('数据改变了',newvalue);
+            }
+        })
+    </script>
+</body>
+</html>

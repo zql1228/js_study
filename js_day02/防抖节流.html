@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="text"  oninput="login(event)"/>
+        <button onclick="btnClick()">按钮</button>
+    </div>
+    <script>
+        //防抖 持续触发事件，在一定时间内不再触发该事件，就执行一次事件处理函数，如果在这段时间内再一次触发了事件，就重新开始计时
+      
+        // let fn=(function debounce(cb,delay){
+        //     let timer;
+        //    return function(val){
+        //             clearTimeout(timer)
+        //             timer=setTimeout(()=>{
+        //                 cb(val)
+        //         },delay)
+        //     }             
+        // })(cb,1000)
+        // function login(e){
+        //     fn(e.target.value)
+        // }
+        // function cb(val){
+        //     console.log(val);
+        // }
+    // 节流 持续触发事件,一段时间内事件只执行一次
+    function throttle(cb,delay){
+        let timer       
+        return function (){
+            if(!timer){ 
+                //timer有值得时候不执行
+            timer=setTimeout(() => {
+                console.log('timer执行了');
+                cb() 
+                //timeout
+                timer=null
+            }, delay);
+        }    
+        }
+    }
+    
+     fn=throttle(callback,3000)
+     function btnClick(){
+       fn()
+    }
+    function callback(){
+        console.log('///');
+    }
+    </script>
+</body>
+</html>
