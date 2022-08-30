@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text"  @input="handleInput">
+        <ul>
+            <li v-for="(item,index) of arr">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        const vm=new Vue({
+            el:'#box',
+            data:{
+                value:'',
+                dataList:['aaa','bbb','ddd','abd','bad','acb','bdd','abcd','ddb','cbd'],
+                arr:['aaa','bbb','ddd','abd','bad','acb','bdd','abcd','ddb','cbd']
+            },
+            methods:{
+                handleInput(e){
+                    this.arr=this.dataList.filter((item,index)=>{
+                    return item.includes(e.target.value)
+                    })
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

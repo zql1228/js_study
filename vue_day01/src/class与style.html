@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<style>
+    .a{
+        color:green
+    }
+    .b{
+        background: #f00;
+    }
+    .c{
+        border: 1px solid #0ff;
+    }
+    .d{
+        font-size: 20px;
+    }
+    .active{
+        color:#fff;
+        background: red;
+    }
+</style>
+<body>
+    <div id="box">
+        <div :class="classObj">动态切换class对象写法</div>
+        <div :class="arr">动态切换class数组写法</div>
+        <hr/>
+        <div :style="styleObj">动态切换style对象写法</div>
+        <div :style="styleArr">动态切换style数组写法</div>
+        <ul>
+            <li @click="handleClick(index)" :class="current==index? 'active':''" v-for="(item,index) in dataList">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        const vm=new Vue({
+            el:'#box',
+            data:{
+                classObj:{a:true,b:true,c:true},
+                arr:['a','b','c'],
+                styleObj:{background:'red'},
+                styleArr:[{background:'green'}],
+                dataList:["首页",'列表','购物车'],
+                current:0,
+            },
+            methods:{
+                handleClick(index){
+                    this.current=index
+                }
+            }
+        })
+    </script>
+</body>
+</html>
