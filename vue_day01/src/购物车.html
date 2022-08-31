@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<style>
+    #box{margin:0px;padding:0px}
+    ul>li{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+</style>
+<body>
+    <div id="box">
+        <div v-if="list.length===0">购物车空空如也</div>
+        <ul v-else>
+            <div><input type="checkbox" v-model="allchecked" @change="handleChangeAll">全选和全不选</div>
+            <li  v-for="(item ,index) of list" :key="item.id">
+                <input @change="checked" type="checkbox" v-model="checkGroup" :value="item">               
+                <img style="width:100px" :src="item.pic" alt="">
+                <div>
+                    <span>商品名：{{item.name}} </span>
+                    <span>价格：￥{{item.price}}</span>
+                </div>
+                <div>
+                    <button :disabled="item.number===1" @click="item.number--">-</button>
+                    {{item.number}}
+                    <button :disabled="item.number===item.limit" @click="item.number++">+</button>
+                </div>
+                <button @click="handelClick(index,item.id)">删除</button>
+            </li>
+        </ul>
+        <div>总金额: {{sum()}}</div>
+    </div>
+    <script>
+        const vm=new Vue({
+            el:'#box',
+            data:{
+               list:[
+                {
+                    name:'商品1',
+                    id:1,
+                    price:10,
+                    number:1,
+                    limit:5,
+                    pic:"./assets/1.png"
+                },
+                {
+                    name:'商品2',
+                    id:2,
+                    price:100,
+                    number:1,
+                    limit:10,
+                    pic:"./assets/1.png"
+
+                },
+                {
+                    name:'商品3',
+                    id:3,
+                    price:49,
+                    number:1,
+                    limit:10,
+                    pic:"./assets/1.png"
+
+                }
+               ],
+               checkGroup:[],
+               allchecked:false
+            },
+            methods: {
+                sum(){
+                    let total=0;
+                    this.checkGroup.forEach(item=>{
+                        total+=item.number*item.price
+                    })
+                    return total
+                },
+                handelClick(i,id){
+                    this.list.splice(i,1)
+                    this.checkGroup=this.checkGroup.filter((item)=>item.id!==id)
+                    this.checked()
+                },
+                handleChangeAll(){
+                    this.allchecked?this.checkGroup=this.list:this.checkGroup=[]
+                },
+                //判定是否全选
+                checked(){
+                    if(this.checkGroup.length===this.list.length){
+                        this.allchecked=true
+                    }else{
+                        this.allchecked=false
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
