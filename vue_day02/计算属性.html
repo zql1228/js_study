@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <!-- 模板过重 -->
+        <!-- {{myName.substring(0,1).toUpperCase()+myName.substring(1)}} -->
+        {{myComputedName}}
+       {{myComputedName()}} 
+       <h2>计算属性可以被赋值</h2>
+       {{mytest}}
+    </div>
+    <script>
+        const vm=new Vue({
+            el:'#box',
+            data:{
+                myName:'computer'
+            },
+            computed:{
+                //简写
+                myComputedName(){
+                    return this.myName.substring(0,1).toUpperCase()+this.myName.substring(1)
+                },
+                mytest:{
+                    get(){
+                        return 1
+                    },
+                    set(newValue){
+                        console.log(newValue);
+                    }
+                }
+
+
+            },
+            methods:{
+                // myComputedName(){
+                //     return this.myName.substring(0,1).toUpperCase()+this.myName.substring(1)
+                // }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -9,27 +9,30 @@
 </head>
 <body>
     <div id="box">
-        <input type="text"  v-model="mytext">
-        函数表达式{{mymethod}}
-        <ul>
-            <li v-for="(item,index) of mymethod">{{item}}</li>
-        </ul>
+        <!-- mixin -->
+        <button @click="handelClick">按钮</button>
     </div>
     <script>
+        let obj={
+            methods:{
+                handelClick(){
+                    console.log('外部的');
+                }  ,
+                handelClick2(){
+
+                }               
+            }
+        }
         const vm=new Vue({
             el:'#box',
             data:{
-                mytext:'',
-                dataList:['aaa','bbb','ddd','abd','bad','acb','bdd','abcd','ddb','cbd'],
+                myName:'computer'
             },
-            computed:{
-                mymethod(){
-                    return this.dataList.filter((item)=>item.includes(this.mytext))
-
-                }
-            },
+            mixins:[obj],
             methods:{
-                
+                handelClick(){
+                    console.log('自己的');
+                }  ,
             }
             
         })

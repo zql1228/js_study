@@ -19,9 +19,9 @@
     <div id="box">
         <div v-if="list.length===0">购物车空空如也</div>
         <ul v-else>
-            <div><input type="checkbox" v-model="allchecked" @change="handleChangeAll">全选和全不选</div>
+            <div><input type="checkbox" v-model="allchecked" >全选和全不选</div>
             <li  v-for="(item ,index) of list" :key="item.id">
-                <input @change="checked" type="checkbox" v-model="checkGroup" :value="item">               
+                <input  type="checkbox" v-model="checkGroup" :value="item">               
                 <img style="width:100px" :src="item.pic" alt="">
                 <div>
                     <span>商品名：{{item.name}} </span>
@@ -70,7 +70,20 @@
                 }
                ],
                checkGroup:[],
-               allchecked:false
+            },
+            computed:{
+                allchecked:{
+                    get(){
+                        return this.checkGroup.length===this.list.length
+                    },
+                    set(newValue){
+                        if(newValue){
+                            this.checkGroup=this.list
+                        }else{
+                            this.checkGroup=[]
+                        }
+                    }
+                }
             },
             methods: {
                 sum(){
@@ -83,18 +96,13 @@
                 handelClick(i,id){
                     this.list.splice(i,1)
                     this.checkGroup=this.checkGroup.filter((item)=>item.id!==id)
-                    this.checked()
-                },
-                handleChangeAll(){
-                    this.allchecked?this.checkGroup=this.list:this.checkGroup=[]
-                },
-                //判定是否全选
-                checked(){
-                    if(this.checkGroup.length===this.list.length){
-                        this.allchecked=true
-                    }else{
-                        this.allchecked=false
-                    }
+                }
+              
+            },
+            watch:{
+                //监听状态的改变
+                allchecked(val){
+                    console.log(val);
                 }
             }
         })
