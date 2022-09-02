@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<style>
+body{margin:0;padding:0;}
+.footer{
+display: flex;
+position: fixed;
+bottom:0;
+width:100%;
+height:50px;
+background: #ccc;
+justify-content: space-around;
+align-items: center;
+}
+.footer>div{text-align: center;padding:0 10px}
+</style>
+<body>
+    <div id="box">
+        <!-- <home v-if="show==1"></home>
+        <list v-else-if="show==2"></list>
+        <shopcar v-else></shopcar> -->
+        <keep-alive>        
+         <component :is="show"></component>
+        </keep-alive>
+        <div class="footer">
+            <div @click="show='home'">首页</div>
+            <div @click="show='list'">列表</div>
+            <div @click="show='shopcar'">购物车</div>
+        </div>
+    </div>
+    <script>
+        Vue.component('home',{
+            template:`<div>home</div>`
+        })
+        Vue.component('list',{
+            template:`<div>list</div>`
+        })
+        Vue.component('shopcar',{
+            template:`<div>shopcar</div>`
+        })
+        var vm=new Vue({
+            el:'#box',
+            data:{
+                show:'home'
+            }
+        })
+    </script>
+</body>
+</html>

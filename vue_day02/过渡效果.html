@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<style>
+body{margin:0;padding:0;}
+.kerwin-enter-active,.kerwin-leave-active {
+  animation: all 3s reverse;
+}
+@keyframes all {
+    0%{transform: translateX(20px);}
+    50%{transform: translateX(50px);}
+}
+</style>
+<body>
+    <div id="box">    
+       <button @click="isshow=!isshow">click</button>
+       <!-- <transition name="kerwin" appear>
+        <div v-show="isshow">111111111111111</div>
+       </transition>    -->
+       <transition-group name="kerwin" appear>
+        <div key="1" v-if="isshow">222222222222</div>
+        <div key="2" v-else>333333333333</div>
+       </transition-group>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#box',
+            data:{
+                isshow:false
+            },
+
+        })
+    </script>
+</body>
+</html>

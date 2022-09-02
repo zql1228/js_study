@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./axios.js"></script>
+</head>
+<body>
+    <div id="box">
+       <child1></child1>
+       <child2></child2>
+    </div>
+    <script>
+        var bus=new Vue({})
+        Vue.component('child1',{
+            template:`
+            <div>child1<button @click="handleClick">按钮1</button></div>
+            `,
+            methods:{
+                handleClick(){
+                    //发布者
+                    bus.$emit('kerwin',{name:'张三',age:18})
+                }
+            }
+   
+        })
+        Vue.component('child2',{
+            template:`
+            <div>child2<button>按钮</button></div>
+            `,
+            mounted () {
+                bus.$on('kerwin',(val)=>{
+                    console.log('订阅者child2----',val);
+                })
+            }
+        })
+        var vm=new Vue({
+            el:'#box',
+            data:{
+                dataList:[]
+            },
+            methods: {
+              
+            },
+        })
+    </script>
+</body>
+</html>
