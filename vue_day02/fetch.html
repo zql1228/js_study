@@ -6,10 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./vue.js"></script>
+    <script src="./axios.js"></script>
 </head>
+<style>
+    body{margin:0px;padding:0px}
+    #box{
+        padding:20px;width:100%;height: 100vh;box-sizing: border-box;
+        display:flex  ;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap:20px;
+    }
+    #box>div{
+       flex: 1;
+        height:50%;
+        background: violet;
+    }
+    #box>div:first-child{}
+</style>
 <body>
     <div id="box">
-
+        <!-- {{handleClick()}} -->
+        <div></div>
+        <div></div>
     </div>
     <script>
         const vm=new Vue({
@@ -18,7 +37,23 @@
 
             },
             methods:{
-                
+                handleClick(){
+                    fetch('./fetch.json').then(res=>res.json())
+                    .then(res=>{
+                        console.log(res);
+                    })
+                    //res.text() 字符串 res.json json对象
+                    fetch('./fetch.json',{method:'post',headers:{
+                        "Content-type":"application/json",
+                        "body":JSON.stringify({name:'张三',age:18})
+                    }}).then(res=>res.json())
+                    .then(res=>{
+                        console.log(res);
+                    })
+                    axios.get('./fetch.json').then(res=>{
+                        console.log(res);
+                    })
+                }
             }
         })
     </script>
