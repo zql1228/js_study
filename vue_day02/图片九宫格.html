@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{margin:0px;padding:0px;}
+    .container{
+        width:300px;
+        height:300px;
+        display: grid;
+        /* 3行3列 */
+        grid-template-columns: repeat(3,1fr);
+        margin: 0 auto;
+    }
+    .item{
+        /* 没有偏移，1像素模糊的白色内阴影。 */
+        box-shadow: inset 0 0 0 0 #fff;
+        background-size: 100px 100px;
+        transition: 0.5s;
+        background-image: url('./1.webp');
+        position: relative;
+    }
+    .item:nth-child(3n+1){
+        left:-10px;
+        background-position-x: 0;
+    }
+    .item:nth-child(3n+2){
+        left:0px;
+        background-position-x: -100px;
+    }
+    .item:nth-child(3n){
+        left:10px;
+        background-position-x: -200px;
+    } 
+    .item{top:20px;background-position-y: -200px;}
+    .item:nth-child(-n+6){
+        top:0; 
+        background-position-y: -100px; 
+    }
+    .item:nth-child(-n+3){
+        top:-10px; 
+        background-position-y: 0; 
+    }
+    .container:hover .item{
+        left:0;
+        top:0;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+</html>

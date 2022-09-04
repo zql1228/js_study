@@ -23,10 +23,15 @@ body{margin:0;padding:0;}
        <!-- <transition name="kerwin" appear>
         <div v-show="isshow">111111111111111</div>
        </transition>    -->
-       <transition-group name="kerwin" appear>
+       <!-- mode out-in/in-out -->
+       <!-- <transition name="kerwin" appear>
+        <div  v-if="isshow">222222222222</div>
+        <div  v-else>333333333333</div>
+       </transition> -->
+       <transition name="kerwin" appear mode="in-out">
         <div key="1" v-if="isshow">222222222222</div>
         <div key="2" v-else>333333333333</div>
-       </transition-group>
+       </transition>
     </div>
     <script>
         var vm=new Vue({

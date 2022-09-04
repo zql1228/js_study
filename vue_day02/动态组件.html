@@ -20,14 +20,31 @@ justify-content: space-around;
 align-items: center;
 }
 .footer>div{text-align: center;padding:0 10px}
+.kerwin-enter-active{
+  animation: a 1s reverse;
+}
+.kerwin-leave-active {
+    animation: b 1s ;
+}
+@keyframes a {
+    0%{opacity: 0;}
+    50%{opacity: 0.5;}
+}
+@keyframes b {
+    50%{opacity: 0.5;}
+    100%{opacity: 0;}
+}
+
 </style>
 <body>
     <div id="box">
         <!-- <home v-if="show==1"></home>
         <list v-else-if="show==2"></list>
         <shopcar v-else></shopcar> -->
-        <keep-alive>        
+        <keep-alive>      
+            <transition name="kerwin" mode="out-in">
          <component :is="show"></component>
+        </transition>
         </keep-alive>
         <div class="footer">
             <div @click="show='home'">首页</div>

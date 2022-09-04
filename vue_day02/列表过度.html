@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<style>
+    body{margin:0;padding:0;}
+.kerwin-enter-active{
+  animation: a 3s;
+}
+.kerwin-leave-active {
+  animation: a 3s reverse;
+}
+@keyframes a {
+    0%{transform: translateX(300px);opacity: 0;}
+    100%{transform: translateX(0px);opacity: 1;}
+}
+</style>
+<body>
+    <div id="box">
+        <input type="text" v-model="value"/>
+        <button @click="btnClick">添加</button>
+        <!-- <div v-if="list.length==0">代办事项空空</div> -->
+        <!-- <ul v-else> -->
+            <transition-group name="kerwin" mode="out-in" tag="ul" >
+            <li v-for="(item,i) of list" :key="item">
+                {{item}}
+                <button @click="remove(i)">删除</button>
+            </li>
+        </transition-group>
+        <!-- </ul> -->
+    </div>
+    <script>
+        const vm=new Vue({
+            el:'#box',
+            data:{
+                value:'',
+                list:[],
+            },
+            methods:{
+                btnClick(){      
+                    if(this.value){
+                        this.list.push(this.value)
+                        this.value=''
+                    }
+                },
+                remove(val){
+                    this.list.splice(val,1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
