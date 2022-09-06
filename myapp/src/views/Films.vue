@@ -1,11 +1,7 @@
 <template>
   <div class="home">
     <TabBarVue />
-    <ul>
-      <li v-for="item of dataList">
-        {{item.name}}
-      </li>
-    </ul>
+    <router-view></router-view>
   </div>
 </template>
 

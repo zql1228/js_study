@@ -1,9 +1,9 @@
 <template>
     <nav>
     <ul class="tab">
-        <li><router-link to="/" active-class="active">电影</router-link></li>
-        <li><router-link to="/ceima" active-class="active">影院</router-link></li>
-        <li><router-link to="center" active-class="active">我的</router-link></li>
+        <router-link to="/films" active-class="active" tag="li">电影</router-link>
+        <router-link to="/cinemas" active-class="active" tag="li">影院</router-link>
+        <router-link to="/center" active-class="active" tag="li">我的</router-link>
     </ul>
 </nav>
 </template>
@@ -24,6 +24,7 @@ export default{
     height:50px;
     width: 100%;
     bottom:0;
+    background: #fff;
     justify-content:space-between;
     align-items: center;
     border-top:1px solid #ccc; 
@@ -32,10 +33,10 @@ export default{
         flex: 1;
         text-align: center;
         flex-direction: column;
-        a{color:#333;text-decoration: none;}
-        .active{
-    color:rgb(247, 40, 40)
-}
+        // a{color:#333;text-decoration: none;}
+        &.active{
+        color:rgb(247, 40, 40)
+        }
     }
 }
 
