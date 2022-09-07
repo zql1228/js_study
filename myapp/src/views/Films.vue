@@ -1,34 +1,39 @@
 <template>
   <div class="home">
-    <TabBarVue />
+    <film-swiper>
+      <div class="swiper-slide" v-for="(item,index) of imgList" :key="index">
+        <div :style="{backgroundImage:'url('+item+')'}"
+        style="height:200px;background-size: cover;"></div>
+      </div>
+    </film-swiper>
+    <FilmHeader />
     <router-view></router-view>
+    <NavBar></NavBar>
   </div>
 </template>
 
 <script>
-  import axios from 'axios'
-  import TabBarVue from '@/components/TabBar.vue';
+import NavBar from '@/components/NavBar.vue';
+import FilmHeader from './films/FilmHeader.vue';
+import FilmSwiper from './films/FilmSwiper.vue';
 export default {
   name: 'HomeView',
   components: {
-    TabBarVue
+    NavBar,
+    FilmHeader,
+    FilmSwiper,
+   
   },
   data:()=>{
     return {
-      dataList:[]
+      dataList:[],
+      imgList:[	'https://static.maizuo.com/pc/v5/usr/movie/88cedab84c72eba9cb2970533679c697.jpg?x-oss-process=image/quality,Q_70',
+    	'https://static.maizuo.com/pc/v5/usr/movie/cb9742861d19ae2fc11554cc41fb09c6.jpg?x-oss-process=image/quality,Q_70',
+      'https://static.maizuo.com/pc/v5/usr/movie/55b586292422173c55ba608b8cb94c8d.jpg?x-oss-process=image/quality,Q_70'
+    ]
     }
   },
   mounted(){
-    axios({
-      url:'https://m.maizuo.com/gateway?cityId=420100&pageNum=1&pageSize=10&type=1&k=2076142',
-      headers:{
-      'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.2.1","e":"16624565381673886194204673","bc":"420100"}',
-      'X-Host': 'mall.film-ticket.film.list'
-      }
-    }).then((res)=>{
-      console.log(res.data);
-      this.dataList=res.data.data.films
-    })
   }
 }
 </script>

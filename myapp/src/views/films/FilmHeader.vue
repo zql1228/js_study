@@ -1,7 +1,7 @@
 <template>
     <ul class="ul-tab"> 
-        <router-link active-class="active" to="#/film/nowPlaying" tag="li"><span>正在热映</span></router-link>
-        <router-link active-class="active" to="#/film/comingSoon"  tag="li"><span>即将上映</span></router-link>
+        <router-link active-class="active" to="/films/nowPlaying" tag="li"><span>正在热映</span></router-link>
+        <router-link active-class="active" to="/films/comingSoon"  tag="li"><span>即将上映</span></router-link>
     </ul>
 
 </template>
@@ -22,6 +22,7 @@ data(){
     height: 50px;
     align-items: center;
     background: #fff;
+    z-index: 1;
     li{
         list-style: none;
         width:50%;

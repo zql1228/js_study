@@ -7,21 +7,30 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/films',
-    name: '电影',
+    name: 'Films',
+    meta:{title:'电影'},
     component: Films,
     redirect:'/films/nowPlaying',
     children:[
       {
       path:'nowPlaying',
-      name:'正在热映',
+      meta:{title:'正在热映'},
+      name:'NowPlaying',
       component:()=>import ('../views/films/NowPlaying.vue')
     },
     {
       path:'comingSoon',
-      name:'即将上映',
+      meta:{title:"即将上映"},
+      name:'ComingSoon',
       component:()=>import ('../views/films/ComingSoon.vue')
     },
   ]
+  },
+  {
+    path:'/films/:id',
+    name:'Detail',
+    meta:{title:'详情'},
+    component:()=>import ('../views/Detail.vue')
   },
   {
     path: '/cinemas',
@@ -39,6 +48,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: center" */ '../views/Center.vue')
   },
+  {
+    path:'/login',
+    name:'Login',
+    meta:{title:'登录'},
+    component:()=>import ('../views/Login.vue')
+  }
 ]
 
 const router = new VueRouter({
