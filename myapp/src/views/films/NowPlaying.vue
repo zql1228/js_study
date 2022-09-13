@@ -1,6 +1,9 @@
 <template>
-  <ul>
-    <li class="tag-li" v-for="item of dataList" :key="item.id" @click="handleClick(item)">
+  <van-list   
+  @load="onLoad"     
+  v-model:loading="loading"
+      :finished="finished">
+    <van-cell class="tag-li" v-for="item of dataList" :key="item.id" @click="handleClick(item)">
         <img style="position: absolute;width:66px" :src="item.poster" alt="">
         <div >
             <span>{{item.name}}<span style="font-size:14px;background: #d2d6dc;color:#fff"> {{item.item.name}}</span></span>
@@ -12,34 +15,51 @@
        
         </div>
         <button>购票</button>
-    </li>
-  </ul>
+      </van-cell>
+  </van-list>
 </template>
 
 <script>
 import api from '@/util/app'
 import Vue from 'vue'
+import {List} from 'vant'
 Vue.filter('actorsFilter',(data)=>{
   return data?data.map(item=>item.name).join(' '):'暂无主演'
 })
 export default {
     data:()=>{
         return {
-            dataList:[]
+            dataList:[],
+            loading:false,
+            finished:false,
+            current:1
         }
     },
     mounted(){
+      this.loading=true
     api({
-      url:'/api/gateway?cityId=420100&pageNum=3&pageSize=10&type=1&k=2076142',
+      url:`/api/gateway?cityId=420100&pageNum=${this.current}&pageSize=10&type=1&k=2076142`,
       headers:{
       'X-Host': 'mall.film-ticket.film.list'
       }
     }).then((res)=>{
       console.log(res.data);
       this.dataList=res.data.data.films
+      this.loading=false
     })
   },
   methods:{
+    onLoad(){
+      api({
+      url:`/api/gateway?cityId=420100&pageNum=${this.current}&pageSize=10&type=1&k=2076142`,
+      headers:{
+      'X-Host': 'mall.film-ticket.film.list'
+      }
+    }).then((res)=>{
+      console.log(res.data);
+      this.dataList=[...this.dataList,...res.data.data.films]
+    })
+    },
     handleClick(film){
       this.$router.push({path:`/films/${film.filmId}`,params:{k:'',filmId:film.filmId}})
     }
