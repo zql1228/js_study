@@ -6,7 +6,7 @@
             @click-right="onClickRight"
              >  
              <template #left>
-                上海<van-icon name="arrow-down" color="#000" />
+                {{$store.store.state.cityName}}<van-icon name="arrow-down" color="#000" />
             </template>
             <template #right>
                 <van-icon name="search" size="18" color="#000" />
@@ -49,7 +49,6 @@ export default {
     },
     methods:{
         onClickLeft(){
-            console.log('//');
             this.$router.push('/city')
         },
         onClickRight(){

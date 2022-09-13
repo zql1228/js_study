@@ -32,7 +32,8 @@ export default {
             dataList:[],
             loading:false,
             finished:false,
-            current:1
+            current:1,
+            total:0
         }
     },
     mounted(){
@@ -45,20 +46,26 @@ export default {
     }).then((res)=>{
       console.log(res.data);
       this.dataList=res.data.data.films
+      this.total=res.data.data.total
       this.loading=false
     })
   },
   methods:{
     onLoad(){
-      api({
-      url:`/api/gateway?cityId=420100&pageNum=${this.current}&pageSize=10&type=1&k=2076142`,
-      headers:{
-      'X-Host': 'mall.film-ticket.film.list'
+      if(this.dataList.length===this.total && this.dataList.length!=0){
+        this.finished=true;
+        return 
       }
-    }).then((res)=>{
-      console.log(res.data);
-      this.dataList=[...this.dataList,...res.data.data.films]
+      api({
+        url:`/api/gateway?cityId=420100&pageNum=${this.current}&pageSize=10&type=1&k=2076142`,
+        headers:{
+        'X-Host': 'mall.film-ticket.film.list'
+        }
+      }).then((res)=>{
+        console.log(res.data);
+        this.dataList=[...this.dataList,...res.data.data.films]
     })
+
     },
     handleClick(film){
       this.$router.push({path:`/films/${film.filmId}`,params:{k:'',filmId:film.filmId}})
