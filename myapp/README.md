@@ -22,3 +22,9 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## fastclick 
+解决手机端click事件默认延迟300秒
+1.fastclick
+2.css {touch-action:manipulation}
+hammer.js(手势)

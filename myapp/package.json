@@ -32,7 +32,8 @@
     "swiper": "6.8.1",
     "unplugin-vue-components": "^0.22.7",
     "vant": "^2.12.49",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "vue-touch": "^2.0.0-beta.4"
   },
   "eslintConfig": {
     "root": true,

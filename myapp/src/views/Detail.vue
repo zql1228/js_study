@@ -29,6 +29,8 @@
 import api from '@/util/app'
 import Vue from 'vue'
 import DetailHeader from './detail/DetailHeader.vue'
+import VueTouch from 'vue-touch'
+Vue.use(VueTouch)
 Vue.directive('top',{
     inserted(el){
         el.style.display='none'

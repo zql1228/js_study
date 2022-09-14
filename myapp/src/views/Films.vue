@@ -8,18 +8,15 @@
     </film-swiper>
     <FilmHeader />
     <router-view></router-view>
-    <NavBar></NavBar>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
 import FilmHeader from './films/FilmHeader.vue';
 import FilmSwiper from './films/FilmSwiper.vue';
 export default {
   name: 'HomeView',
   components: {
-    NavBar,
     FilmHeader,
     FilmSwiper,
    

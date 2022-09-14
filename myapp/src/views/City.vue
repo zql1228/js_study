@@ -3,7 +3,7 @@
         <van-index-bar :index-list="indexList" @select="handleSelect">
             <div v-for="item of cityList" :key="item.type">
                 <van-index-anchor :index="item.type" />
-                    <van-cell :title="city.name" v-for="city of item.list" :key='city.cityId' @click="handleChangePage(item.list)"/>
+                    <van-cell :title="city.name" v-for="city of item.list" :key='city.cityId' @click="handleChangePage(city)"/>
             </div>
         </van-index-bar>
 
@@ -55,8 +55,11 @@ methods:{
     handleSelect(){
 
     },
-    handleChangePage(list){//跳转回影院
-        
+    handleChangePage(city){//跳转回影院
+        console.log(city);
+        this.$store.commit('changeCityName',city.name)
+        console.log(this.$store.getters.cityName);
+        this.$router.go(-1)
     }
 }
 }

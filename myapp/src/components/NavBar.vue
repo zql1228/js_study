@@ -1,9 +1,14 @@
 <template>
     <nav>
     <ul class="tab">
-        <router-link to="/films" active-class="active" tag="li">电影</router-link>
-        <router-link to="/cinemas" active-class="active" tag="li">影院</router-link>
-        <router-link to="/center" active-class="active" tag="li">我的</router-link>
+        <router-link to="/films" active-class="active" custom v-slot="{ navigate }">
+            <li @click="navigate" @keypress.enter="navigate" role="link">电影</li>
+        </router-link>
+        <router-link to="/cinemas" active-class="active"  custom v-slot="{ navigate }">
+            <li @click="navigate" @keypress.enter="navigate" role="link">影院</li></router-link>
+        <router-link to="/center" active-class="active"  custom v-slot="{ navigate }" >
+            <li @click="navigate" @keypress.enter="navigate" role="link">我的</li>
+        </router-link>
     </ul>
 </nav>
 </template>

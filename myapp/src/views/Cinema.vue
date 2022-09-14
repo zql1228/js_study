@@ -6,7 +6,7 @@
             @click-right="onClickRight"
              >  
              <template #left>
-                {{$store.store.state.cityName}}<van-icon name="arrow-down" color="#000" />
+                {{$store.state.cityName}}<van-icon name="arrow-down" color="#000" />
             </template>
             <template #right>
                 <van-icon name="search" size="18" color="#000" />
@@ -18,15 +18,12 @@
             <div >{{item.address}}</div>
         </li>
         </ul>
-        <NavBar/>
     </div>
 </template>
 <script>
-import NavBarVue from '@/components/NavBar.vue';
 import api from '@/util/app'
-import BScroll from 'better-scroll'
+import BScroll from 'better-scroll' //滚动条
 export default {
-    components:{ NavBarVue},
     data(){
     return {
         cinemaList:[],
@@ -49,6 +46,7 @@ export default {
     },
     methods:{
         onClickLeft(){
+            console.log('///')
             this.$router.push('/city')
         },
         onClickRight(){
