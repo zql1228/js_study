@@ -1,5 +1,8 @@
 <template>
     <div v-if="filmInfo"  class="detail">
+        <v-touch v-on:swipeleft="swiperleft"  v-on:swiperight="swiperright" class="wrapper">
+      内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    </v-touch>
         <detail-header v-top :title="filmInfo.name"  ></detail-header>
         <div style="width:100%;height:200px;background-size: cover;" :style="{backgroundImage:'url('+filmInfo.poster+')'}" ></div>
         <h3>{{filmInfo.name}}</h3>
@@ -30,7 +33,7 @@ import api from '@/util/app'
 import Vue from 'vue'
 import DetailHeader from './detail/DetailHeader.vue'
 import VueTouch from 'vue-touch'
-Vue.use(VueTouch)
+Vue.use(VueTouch,{name:'v-touch'})
 Vue.directive('top',{
     inserted(el){
         el.style.display='none'
@@ -70,6 +73,13 @@ mounted(){
 methods:{
     btnClick(){
 
+    },
+    swiperleft: function () {  //左划切换到goods页
+      console.log('//')
+    },
+    swiperright: function () { //右滑切换到detail页
+      console.log('22222')
+      this.$router.back()
     }
 }
 }
