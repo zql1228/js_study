@@ -16,7 +16,7 @@ const { mapState, mapActions } = createNamespacedHelpers('some/nested/module')
       }
     },
     computed:{
-      ...mapState('TabbarModule',['isTabbarshow'] )
+      ...mapState('TabbarModule'['isTabbarshow'] )
     },
     mounted(){
 

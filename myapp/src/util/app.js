@@ -2,7 +2,7 @@ import axios from 'axios'
  import { Toast } from 'vant';
  import 'vant/es/toast/style';
 const api=axios.create({
-    baseURL:'http://localhost:8080',
+    // baseURL:'http://localhost:8081',
     timeout:6000,
     headers:{
         'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.2.1","e":"16624565381673886194204673","bc":"420100"}',
@@ -11,7 +11,7 @@ const api=axios.create({
 //拦截器
 // 添加请求拦截器
 api.interceptors.request.use(function (config) {
-    // // 在发送请求之前做些什么
+    // 在发送请求之前做些什么
     Toast.loading({
         message: '加载中...',
         forbidClick: true,
@@ -33,4 +33,5 @@ api.interceptors.response.use(function (response) {
     // 对响应错误做点什么
     return Promise.reject(error);
   });
+
 export default api

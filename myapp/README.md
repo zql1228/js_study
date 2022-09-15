@@ -32,3 +32,10 @@ action 异步操作
 hammer.js(手势)
 vue-touch
 ### git
+git merge <branch-name>  合并分支
+### 上线流程
+.\nginx.exe -c ./cong/kewin.conf
+.\nginx.exe -s stop
+.\nginx.exe -s reload 
+nginx 没有走代理？？？
+### vue3
